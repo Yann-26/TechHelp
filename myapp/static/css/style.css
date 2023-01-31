@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #F3525A;
-    --secondary: #F6F6F6;
+    --primary: #4040ec;
+    --secondary: #ead5d5d6;
     --light: #FFFFFF;
-    --dark: #152440;
+    --dark: #430d0c;
 }
 
 h1,
@@ -25,16 +25,16 @@ h6,
 }
 
 .pt-6 {
-    padding-top: 90px;
+    padding-top: 80px;
 }
 
 .pb-6 {
-    padding-bottom: 90px;
+    padding-bottom: 80px;
 }
 
 .py-6 {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .btn {
