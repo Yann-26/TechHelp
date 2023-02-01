@@ -24,6 +24,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER ='yannassiri26@gmail.com'
 EMAIL_HOST_PASSWORD = 'rechlwnstfvqnbmc'
+FROM_EMAIL = 'yannassiri26@gmail.com' 
+SENDGRID_API_KEY = os.environ.get('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')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentification',
     'myapp',
+    'newsletter',
+    'crispy_forms',
+
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -130,17 +138,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'uploaded_newsletters/'
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AWS_ACCESS_KEY_ID = 'YOUR-ACCESS-KEY-ID'
-AWS_SECRET_ACCESS_KEY = 'YOUR-SECRET-ACCESS-KEY'
-AWS_SES_REGION_NAME = 'REGION-NAME' #(ex: us-east-2)
-AWS_SES_REGION_ENDPOINT ='REGION-ENDPOINT' #(ex: email.us-east-2.amazonaws.com)
+
 
 PASSWORD_HASHERS = [
     # 'monprojet.hashers.MyPBKDF2PasswordHasher',

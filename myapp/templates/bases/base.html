@@ -13,6 +13,8 @@
     <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,21 +68,34 @@
         <a href="{% url 'Home' %}" class="navbar-brand p-0">
             <h1 class="m-0 text-uppercase text-primary"><i class="far fa-smile text-primary me-2"></i>consult</h1>
         </a>
+        {% if user.is_authenticated %}
+        <div class="global-container">
+            <div class="card login-form">
+            <div class="card-body">
+                <h3 class="card-title text-center">Welcome {{request.user.username}}</h3>
+              
+                </div>
+            </div>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
+                <a href="{% url 'signout' %}" class="nav-item nav-link">Deconnection</a>
                 <a href="{% url 'Home' %}" class="nav-item nav-link">Home</a>
                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                 <a href="{% url 'service' %}" class="nav-item nav-link">Service</a>
+                {% else %}
+                <a href="{% url 'register_attempt' %}" class="nav-item nav-link">S'inscrire</a>
+                {% endif %}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
                         <a href="{% url 'blog' %}" class="dropdown-item">Blog Grid</a>
                         <a href="{% url 'detail' %}" class="dropdown-item">Blog Detail</a>
-                        <a href="{% url 'feature' %}" class="dropdown-item active">Features</a>
                         <a href="{% url 'quote' %}" class="dropdown-item">Quote Form</a>
+                        <a href="{% url 'feature' %}" class="dropdown-item active">Features</a>
                         <a href="{% url 'team' %}" class="dropdown-item">The Team</a>
                         <a href="{% url 'testimonial' %}" class="dropdown-item">Testimonial</a>
                     </div>
@@ -92,48 +107,7 @@
     <!-- Navbar End -->
 
 
-    <!-- Carousel Start -->
-    {% block carousel %}
-    <div class="container-fluid p-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{% static 'img/carousel-1.jpg' %}" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase">Business Consultancy</h5>
-                            <h1 class="display-1 text-white mb-md-4">We Provide Solution On Your Business</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{% static 'img/carousel-2.jpg' %}" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase">Business Consultancy</h5>
-                            <h1 class="display-1 text-white mb-md-4">Take Our Help To Reach The Top Level</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Carousel End -->
-    {% endblock carousel %}
+    
     
 {% block content %}
 
@@ -144,14 +118,24 @@
         <div class="row g-5">
             <div class="col-12 text-center">
                 <h1 class="display-5 mb-4">Stay Update!!!</h1>
-                <form class="mx-auto" style="max-width: 600px;">
+                <div class="col-12">
+                    {% if email %}
+                    <p>{{ email }} has been {{ action }}.</p>
+                    {% endif %}
+                </div>
+                {% if form %}
+                <div class="col-12 col-md-4">
+                <form class="mx-auto" style="max-width: 600px;" method="post" novalidate>
                     <div class="input-group">
                         <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                        <button class="btn btn-dark px-4">Sign Up</button>
+                        <button class="btn btn-dark px-4">Subscribe</button>
                     </div>
                 </form>
             </div>
+                {% endif %}
+            </div>
         </div>
+        <!-- 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 -->
     </div>
     <div class="container-fluid bg-dark text-secondary p-5">
         <div class="row g-5">

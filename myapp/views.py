@@ -1,27 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Contact, Banner, Navbar, Topbar, contactUs
-
-
-
-def base(request):
-    
-    banner = Banner.objects.filter(status=True)
-    navbar = Navbar.objects.filter(status=True)
-    topbar = Topbar.objects.filter(status=True)
-    datas = {
-        'banner': banner,
-        'navbar': navbar,
-        'topbar': topbar,
-    }
-    return render(request, 'bases/base.html', datas)
-
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.conf import settings
 
 
 
 def principal(request):
-    
+    banners = Banner.objects.filter(status=True)
+    navbar = Navbar.objects.filter(status=True)
+    topbar = Topbar.objects.filter(status=True)
     datas = {
-
+        'banners': banners,
+        'navbar': navbar,
+        'topbar': topbar,
     }
 
     return render(request, 'principal/index.html', datas)
@@ -86,19 +78,24 @@ def service(request):
 
 
 
-def contact(request) :
-    if request.method == 'POST' : 
+def contact(request):
+    if request.method == 'POST':
         nom = request.POST.get('name')
         email = request.POST.get('email')
         sub = request.POST.get('subject')
         com = request.POST.get('message')
-        
-        
+            
         contact = Contact()
         contact.nom = nom
         contact.email = email 
         contact.subject = sub 
         contact.commentaire = com 
         contact.save()
-    
-    return render(request, 'principal/contact.html')
+            
+        subject = "Merci pour votre message"
+        message = "Nous vous répondrons dans un délai de 24 heures."
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = email
+        send_mail(subject, message, email_from, [recipient_list])
+        return render(request, 'principal/success.html')
+    return render(request, "principal/contact.html")

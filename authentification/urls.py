@@ -1,13 +1,18 @@
+from django.contrib import admin
 from django.urls import path
-from authentification import views
+from .views import *
 
 urlpatterns = [
+    path('' ,  home  , name="home"),
+    path('register' , register_attempt , name="register_attempt"),
+    path('authentification/login/' , login_attempt , name="login_attempt"),
+    path('token' , token_send , name="token_send"),
+    path('success' , success , name='success'),
+    path('verify/<auth_token>' , verify , name="verify"),
+    path('error' , error_page , name="error"),
+    path('signout', signout, name='signout'),
+    # path('activate/<uidb64>/<token>', activate, name='activate'),
+    path("password_reset", password_reset_request, name="password_reset"),
     
-    path('signup', views.signup, name='signup'),
-    # path('signin', views.signin, name='signin'),
-    # path('signout', views.signout, name='signout'),
-    path('activate/<uidb64>/<token>', views.activate, name='activate'),
-    # path("password_reset", views.password_reset_request, name="password_reset"),
-    
-    
+   
 ]
