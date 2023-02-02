@@ -6,7 +6,7 @@ from sendgrid.helpers.mail import Mail
 
 ### CREATION D4ABONNEES 
 class Subscriber(models.Model):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False)
     conf_num = models.CharField(max_length=15)
     confirmed = models.BooleanField(default=False)
 

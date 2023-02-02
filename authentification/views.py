@@ -17,88 +17,87 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from django.contrib.auth import get_user_model
+from authentification.forms import UserUpdateForm
 
 # Create your views here.
 
-@login_required
+
 def home(request):
     return render(request , 'principal/index.html')
 
 
 
-def login_attempt(request):
+def login_or_register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-       
+        action = request.POST.get('action')
 
-        user_obj = User.objects.filter(username = username).first()
-        if user_obj is None:
-            messages.success(request, 'User not found.')
-            return redirect('login_attempt')
-        
-        
-        profile_obj = Profile.objects.filter(user = user_obj ).first()
+        if action == "login":
+            user_obj = User.objects.filter(username = username).first()
+            if user_obj is None:
+                messages.success(request, 'User not found.')
+                return redirect('login_or_register')
 
-        if not profile_obj.is_verified:
-            messages.success(request, 'Profile is not verified check your mail.')
-            return redirect('login_attempt')
+            profile_obj = Profile.objects.filter(user = user_obj ).first()
 
-        user = authenticate(username = username , password = password)
-        if user is None:
-            messages.success(request, 'Wrong password.')
-            return redirect('login_attempt')
-        
-        login(request , user)
-        return redirect('/')
+            if not profile_obj.is_verified:
+                messages.success(request, 'Profile is not verified check your mail.')
+                return redirect('login_or_register')
 
-    return render(request , 'login.html')
+            user = authenticate(username = username , password = password)
+            if user is None:
+                messages.success(request, 'Wrong password.')
+                return redirect('login_or_register')
+
+            login(request , user)
+            return redirect('/')
 
 
-### 
-def register_attempt(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        password_confirm = request.POST.get('password_confirm')
-    
-        if password != password_confirm:
-            messages.success(request, 'Passwords do not match.')
-            return redirect('/register')
+        elif action == "register":
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            email = request.POST.get('email')
+            password_confirm = request.POST.get('password_confirm')
 
-        try:
-            if User.objects.filter(username=username).first():
-                messages.success(request, 'Username is taken.')
-                return redirect('/register')
+            if password != password_confirm:
+                messages.success(request, 'Passwords do not match.')
+                return redirect('login_or_register')
 
-            if User.objects.filter(email=email).first():
-                messages.success(request, 'Email is taken.')
-                return redirect('/register')
+            try:
+                if User.objects.filter(username=username).first():
+                    messages.success(request, 'Username is taken.')
+                    return redirect('login_or_register')
 
-            user_obj = User(
-                username=username,
-                first_name=first_name,
-                last_name=last_name,
-                email=email
-            )
-            user_obj.set_password(password)
-            user_obj.save()
-            auth_token = str(uuid.uuid4())
-            profile_obj = Profile.objects.create(
-                user=user_obj,
-                auth_token=auth_token
-            )
-            profile_obj.save()
-            send_mail_after_registration(email, auth_token)
-            return redirect('/token')
+                if User.objects.filter(email=email).first():
+                    messages.success(request, 'Email is taken.')
+                    return redirect('login_or_register')
 
-        except Exception as e:
-            print(e)
+                user_obj = User(
+                    username=username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email
+                )
+                user_obj.set_password(password)
+                user_obj.save()
+                auth_token = str(uuid.uuid4())
+                profile_obj = Profile.objects.create(
+                    user=user_obj,
+                    auth_token=auth_token
+                )
+                profile_obj.save()
+                send_mail_after_registration(email, auth_token)
+                return redirect('/token')
 
-    return render(request, 'register.html')
+            except Exception as e:
+                print(e)
+            
+    return render(request, 'login_or_register.html', {'action_url': '/login_or_register/'})
+
+
+
 
 def success(request):
     return render(request , 'success.html')
@@ -114,7 +113,7 @@ def signout(request):
     return redirect('Home')
 
 
-#####   
+##### 
 def verify(request , auth_token):
     try:
         profile_obj = Profile.objects.filter(auth_token = auth_token).first()
@@ -175,3 +174,26 @@ def password_reset_request(request):
 					return redirect ("/password_reset/done/")
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+
+def profile(request, username):
+    if request.method == 'POST':
+        user = request.user
+        form = UserUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            user_form = form.save()
+
+            messages.success(request, f'{user_form}, Your profile has been updated!')
+            return redirect('profile', user_form.username)
+
+        for error in list(form.errors.values()):
+            messages.error(request, error)
+
+    user = get_user_model().objects.filter(username=username).first()
+    if user:
+        form = UserUpdateForm(instance=user)
+        # form.fields['description'].widget.attrs = {'rows': 1}
+        return render(request, 'profile.html', context={'form': form})
+
+    return redirect("Home")

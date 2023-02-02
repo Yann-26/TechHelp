@@ -82,12 +82,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
+                <a class="nav-item nav-link" href="{% url 'profile' user.username %}">Profile</a>
                 <a href="{% url 'signout' %}" class="nav-item nav-link">Deconnection</a>
                 <a href="{% url 'Home' %}" class="nav-item nav-link">Home</a>
                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
                 <a href="{% url 'service' %}" class="nav-item nav-link">Service</a>
                 {% else %}
-                <a href="{% url 'register_attempt' %}" class="nav-item nav-link">S'inscrire</a>
+                <a href="{% url 'login_or_register' %}" class="nav-item nav-link">S'inscrire</a>
                 {% endif %}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>

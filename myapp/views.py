@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Contact, Banner, Navbar, Topbar, contactUs
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
+# from .models import Comment, Post
+
 
 
 
@@ -35,6 +37,7 @@ def blog(request):
 
 
 def detail(request):
+ 
     datas = {
 
     }
@@ -99,3 +102,8 @@ def contact(request):
         send_mail(subject, message, email_from, [recipient_list])
         return render(request, 'principal/success.html')
     return render(request, "principal/contact.html")
+
+
+
+#QuerySet pour récupérer tous les commentaires actifs des parents pour ce post
+
