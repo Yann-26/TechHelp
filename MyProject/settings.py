@@ -57,10 +57,24 @@ INSTALLED_APPS = [
     'myapp',
     'newsletter',
     'crispy_forms',
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
    
     'rest_framework',
     'corsheaders',
+    # 'captcha',
+    'graphene_django',
 ]
+
+
+GRAPHENE = {   
+    "SCHEMA": "api.schema.schema"
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'MyProject.urls'
@@ -85,10 +100,53 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # 'social_django.context_processors.backends',  # <--
+                # 'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
 ]
+
+
+
+
+# AUTHENTICATION_BACKENDS = (
+   
+#     'social.backends.facebook.FacebookOAuth2',
+#     'social.backends.google.GoogleOAuth2',
+#     'social.backends.twitter.TwitterOAuth',
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend'
+
+# )
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'github': {
+#         'SCOPE': ['user:email'],
+#         'AUTH_PARAMS': {'allow_signup': 'false'},
+#         'APP': {
+#             'client_id': 'YOUR_CLIENT_ID',
+#             'secret': 'YOUR_CLIENT_SECRET',
+#         }
+#     }
+# }
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],   clé secrette : 
+# clé du site : 6LfQCVYkAAAAAOM43x4cZ_uOIN0KOC2nsnOAkzuL
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
+# firm-moonlight-376921 id du projet
+# clapi : AIzaSyBVeLXGzxrKhQSsz8I0kNOkMF_FRAM5oeA
+
 
 WSGI_APPLICATION = 'MyProject.wsgi.application'
 
@@ -102,6 +160,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'PORT': '1433',
+#         'OPTIONS': {
+#                 'driver': 'ODBC Driver 17 for SQL Server',
+#             },
+#     }
+# }
 
 
 # Password validation

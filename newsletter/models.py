@@ -2,11 +2,12 @@ from django.db import models
 from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.core.mail import send_mail
 
 
 ### CREATION D4ABONNEES 
 class Subscriber(models.Model):
-    email = models.EmailField(unique=False)
+    email = models.EmailField(unique=True)
     conf_num = models.CharField(max_length=15)
     confirmed = models.BooleanField(default=False)
 
@@ -26,15 +27,11 @@ class Newsletter(models.Model):
     def send(self, request):
         contents = self.contents.read().decode('utf-8')
         subscribers = Subscriber.objects.filter(confirmed=True)
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
         for sub in subscribers:
-            message = Mail(
-                    from_email=settings.FROM_EMAIL,
-                    to_emails=sub.email,
-                    subject=self.subject,
-                    html_content=contents + (
-                        '<br><a href="{}/delete/?email={}&conf_num={}">Unsubscribe</a>.').format(
-                            request.build_absolute_uri('/delete/'),
-                            sub.email,
-                            sub.conf_num))
-            sg.send(message)
+            email_subject = self.subject
+            email_body = contents + (
+                '<br><a href="{}/delete/?email={}&conf_num={}">Unsubscribe</a>.').format(
+                    request.build_absolute_uri('/delete/'),
+                    sub.email,
+                    sub.conf_num)
+            send_mail(email_subject, email_body, settings.FROM_EMAIL, [sub.email], html_message=email_body)

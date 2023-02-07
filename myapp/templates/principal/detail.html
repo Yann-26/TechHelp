@@ -49,53 +49,42 @@
 
                 <!-- Comment List Start -->
                 <div class="mb-5">
-                    <h2 class="mb-4">3 Comments</h2>
-                    <div class="d-flex mb-4">
-                        <img src="{% static 'img/user.jpg' %}" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed eirmod</p>
-                            <button class="btn btn-sm btn-light">Reply</button>
+                        {% for commentaire in commentaires %}
+                        <div>
+                            {{ commentaire.count }}
                         </div>
-                    </div>
-                    <div class="d-flex mb-4">
-                        <img src="{% static 'img/user.jpg' %}" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed eirmod</p>
-                            <button class="btn btn-sm btn-light">Reply</button>
+                        <div class="d-flex mb-4">
+                            <img src="" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6><a href="">{{ commentaire.nom }}</a> <small><i>{{ commentaire.date_add }}</i></small></h6>
+                                <p>{{ commentaire.commenter }}</p>
+                                <button class="btn btn-sm btn-light" id="reply-button" onclick="showReplyForm('{{ commentaire.id }}')">Reply</button>
+                            </div>
                         </div>
+                        <form method="post" class="reply-form" data-parent-id="{{ commentaire.id }}" style="display:none;">
+                            <input type="text" name="name" placeholder="Name">
+                            <input type="email" name="email" placeholder="Email">
+                            <textarea name="comment" placeholder="Comment"></textarea>
+                            <input type="hidden" name="parent_id" value="{{ commentaire.id }}">
+                            <input type="submit" value="Submit">
+                        </form>
+                        {% endfor %}
                     </div>
-                    <div class="d-flex ms-5 mb-4">
-                        <img src="{% static 'img/user.jpg' %}" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
-                        <div class="ps-3">
-                            <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                            <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed eirmod</p>
-                            <button class="btn btn-sm btn-light">Reply</button>
-                        </div>
-                    </div>
-                </div>
                 <!-- Comment List End -->
-
                 <!-- Comment Form Start -->
                 <div class="bg-secondary p-5">
                     <h2 class="mb-4">Leave a comment</h2>
-                    <form>
+                    <form method="post">
+                        {% csrf_token %}
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control bg-white border-0" placeholder="Your Name" style="height: 55px;">
+                                <input type="text" class="form-control bg-white border-0" name="name" placeholder="Your Name" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-6">
-                                <input type="email" class="form-control bg-white border-0" placeholder="Your Email" style="height: 55px;">
+                                <input type="email" class="form-control bg-white border-0" name="email" placeholder="Your Email" style="height: 55px;">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control bg-white border-0" placeholder="Website" style="height: 55px;">
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control bg-white border-0" rows="5" placeholder="Comment"></textarea>
+                                <textarea class="form-control bg-white border-0" rows="5" name="comment" placeholder="Comment"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Leave Your Comment</button>
@@ -201,7 +190,14 @@
         </div>
     </div>
     <!-- Blog End -->
-
+    <script>
+      function showReplyForm(id) {
+    var formId = 'reply-form-' + id;
+    var form = document.getElementById(formId);
+    form.style.display = 'block';
+        }
+        </script>
+        
 
    {% endblock content %}
 
@@ -216,6 +212,7 @@
     <script src="{% static 'lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>

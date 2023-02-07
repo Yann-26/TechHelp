@@ -7,6 +7,7 @@ from newsletter.forms import SubscriberForm
 import random
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.core.mail import send_mail
 
 # Helper Functions
 def random_digits():
@@ -19,22 +20,17 @@ def new(request):
     if request.method == 'POST':
         sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
         sub.save()
-        message = Mail(
-            from_email=settings.FROM_EMAIL,
-            to_emails=sub.email,
-            subject='Newsletter Confirmation',
-            html_content='Thank you for signing up for my email newsletter! \
+        email_subject = 'Newsletter Confirmation'
+        email_body = 'Thank you for signing up for my email newsletter! \
                 Please complete the process by \
                 <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
                 confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
                                                     sub.email,
-                                                    sub.conf_num))
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        response = sg.send(message)
+                                                    sub.conf_num)
+        send_mail(email_subject, email_body, settings.FROM_EMAIL, [sub.email], html_message=email_body)
         return render(request, 'index2.html', {'email': sub.email, 'action': 'added', 'form': SubscriberForm()})
     else:
         return render(request, 'index2.html', {'form': SubscriberForm()})
-
 
 ####VUE DE CONFIRMATION 
 def confirm(request):

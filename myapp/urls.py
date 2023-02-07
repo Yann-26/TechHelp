@@ -27,5 +27,7 @@ urlpatterns = [
     path('service/', views.service, name="service"),
     path('team/', views.team, name="team"),
     path('testimonial/', views.testimonial, name="testimonial"),
+    path('set_cookie/', views.set_cookie, name='set_cookie'),
+    path('set_cookie/', views.view, name='set_cookie'),
     
 ]

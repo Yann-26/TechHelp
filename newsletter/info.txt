@@ -1,0 +1,109 @@
+Une API (Application Programming Interface) est un ensemble de règles et de spécifications qui définissent comment les applications peuvent communiquer entre elles. Elle permet aux développeurs de créer des applications en utilisant les fonctionnalités d'autres applications ou services existants.
+
+Les fonctions principales d'une API comprennent :
+
+Accès aux données : L'API permet aux développeurs d'accéder à des données stockées par une autre application ou un service.
+
+Interaction avec des services tiers : Les API permettent aux développeurs de se connecter et d'interagir avec des services tiers tels que les réseaux sociaux, les systèmes de paiement, les bases de données, etc.
+
+Automatisation des tâches : Les API peuvent automatiser des tâches complexes en permettant aux applications de se connecter entre elles et de partager des informations.
+
+Amélioration de la fonctionnalité : Les API peuvent ajouter des fonctionnalités supplémentaires à une application existante en lui permettant de se connecter à d'autres services.
+
+En résumé, les API permettent aux développeurs de construire des applications plus rapidement en utilisant les fonctionnalités existantes d'autres services, sans avoir à les implémenter eux-mêmes.
+
+
+##############################################
+Si vous souhaitez créer une application de services en ligne, vous pouvez utiliser une API pour intégrer diverses fonctionnalités à votre application. Par exemple :
+
+Paiement en ligne : Vous pouvez intégrer une API de paiement pour permettre à vos utilisateurs de payer en ligne pour les services que vous offrez.
+
+Livraison de notifications : Vous pouvez utiliser une API de notifications pour informer les utilisateurs de l'état de leurs commandes ou de tout autre mise à jour importante.
+
+Stockage de données : Vous pouvez utiliser une API de stockage de données pour stocker et gérer les informations de vos utilisateurs, telles que leurs coordonnées et leurs commandes passées.
+
+Géolocalisation : Vous pouvez utiliser une API de géolocalisation pour déterminer l'emplacement actuel des utilisateurs et leur fournir des services basés sur leur emplacement.
+
+En utilisant les API, vous pouvez rapidement ajouter de nouvelles fonctionnalités à votre application sans avoir à les développer vous-même. Cela vous permet de vous concentrer sur la création d'une expérience utilisateur unique pour vos clients.
+
+#####################################################################
+Les API REST (Representational State Transfer) et GraphQL sont deux types différents de protocoles d'interface de programmation d'application (API).
+
+API REST : Les API REST sont des API basées sur le protocole HTTP, qui utilisent des méthodes telles que GET, POST, PUT et DELETE pour effectuer des opérations sur les données. Les API REST sont souvent utilisées pour accéder à des ressources sur le web, telles que les images, les vidéos et les données structurées.
+
+API GraphQL : GraphQL est un protocole d'interface de programmation d'application développé par Facebook. Il permet aux clients de définir exactement les données dont ils ont besoin et de les recevoir en une seule requête, plutôt que d'avoir à faire plusieurs requêtes séparées pour obtenir des données différentes. Les API GraphQL sont souvent utilisées pour les applications de type « single page » qui nécessitent une grande flexibilité pour les requêtes de données.
+
+En résumé, REST est un protocole bien établi pour les API, tandis que GraphQL est un protocole plus récent qui offre une plus grande flexibilité pour les requêtes de données. Les deux types d'API peuvent être utilisés en fonction des besoins spécifiques de votre application.
+
+
+
+
+<!-- {% extends "bases/base.html" %}
+{% load static %}
+{% load static crispy_forms_tags %}
+{% block content %}
+
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+    <legend class="border-bottom mb-4">Profile Information:</legend>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="media">
+            <img src="{% static form.instance.profile_photo.url %}" class="align-self-start mr-3" style="width:100px; height:100px;">
+            <div class="media-body">
+                <h2 class="account-heading">{{ form.instance.username }}
+                    <small class="text-muted">({{ form.instance.status }})</small>
+                </h2>
+                <p class="text-secondary">{{ form.instance.first_name }} {{ form.instance.last_name }}</p>
+                <p class="text-secondary">{{ form.instance.email }}</p>
+                <p class="text-secondary">{{ form.instance.city }}, {{ form.instance.country }}</p>
+                <p class="text-secondary">Phone Number: {{ form.instance.phone_number }}</p>
+            </div>
+        </div>
+        {% if user.username == form.instance.username %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Edit Profile Information</legend>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div> 
+            {{ form.email|as_crispy_field }}
+            {{ form.city|as_crispy_field }}
+            {{ form.country|as_crispy_field }}
+            {{ form.phone_number|as_crispy_field }}
+            {{ form.profile_photo|as_crispy_field }}
+            
+
+            <a href="/">Change password?</a>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    {% endif %}
+</form>
+
+    
+<script>
+  fetch("https://restcountries.eu/rest/v2/all")
+  .then(response => response.json())
+  .then(data => {
+    // data contient la liste de tous les pays
+    let countries = data.map(function(country) {
+      return { name: country.name, code: country.alpha2Code };
+    });
+    // Vous pouvez maintenant utiliser la liste des pays pour alimenter votre liste déroulante.
+    let select = document.getElementById("id_country");
+    countries.forEach(function(country) {
+      let option = document.createElement("option");
+      option.value = country.code;
+      option.text = country.name;
+      select.add(option);
+    });
+  });
+
+</script>
+</div>
+{% endblock content %} -->

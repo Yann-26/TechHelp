@@ -1,0 +1,41 @@
+[
+    {
+        "model": "myapp.TeamMembers",
+        "pk": 1,
+        "fields": {
+            "fullname": "Amou Jean Michel",
+            "designation": "Developpeur et rappeur",
+            "photo": "/static/img/amou.jpg",
+            "date_add" : "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+
+    {
+        "model": "myapp.TeamMembers",
+        "pk": 2,
+        "fields": {
+            "fullname": "Assiri Yann Clovis",
+            "designation": "Developpeur Flutter",
+            "photo": "/static/img/amou.jpg",
+            "date_add" : "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+
+    {
+        "model": "myapp.TeamMembers",
+        "pk": 3,
+        "fields": {
+            "fullname": "Brou Ramissou Abraham",
+            "designation": "Ingenieur sécurité",
+            "photo": "/static/img/amou.jpg",
+            "date_add" : "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    }
+
+]

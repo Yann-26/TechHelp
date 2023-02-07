@@ -1,5 +1,5 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -85,7 +85,38 @@ class contactUs(models.Model):
 
     def __str__(self) :
         return self.title
+
+#######################################################################################################################################################################
+# DEBUT SYSTEME DE COMMENTAIRE 
+
+class Comment(models.Model):
+    nom = models.CharField(max_length=100)
+    email = models.EmailField()
+    commenter = models.TextField()
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True) 
+
+
+    #STANDARS
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_update = models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=True)  
     
+    def __str__(self):
+        return self.email
 
+# FIN SYSTEME DE COMMENTAIRE 
+#######################################################################################################################################################################
 
+class TeamMembers(models.Model):
+    fullname =models.CharField(max_length=200)
+    designation = models.CharField(max_length=100)
+    photo = models.ImageField()
+
+    # STANDARDS
+    date_add = models.DateTimeField(auto_now_add=True, null=True)
+    date_update = models.DateTimeField(auto_now=True, null=True)
+    status = models.BooleanField(default=True, null=True)
+
+    def __str__(self):
+        return self.fullname
 

@@ -1,0 +1,15 @@
+# templates/set_cookie.html
+
+{% extends "bases/base.html" %}
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="cookie_name">Nom du cookie:</label>
+        <input type="text" id="cookie_name" name="cookie_name">
+    </div>
+    <div>
+        <label for="cookie_value">Valeur du cookie:</label>
+        <input type="text" id="cookie_value" name="cookie_value">
+    </div>
+    <button type="submit">En

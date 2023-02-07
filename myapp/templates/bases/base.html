@@ -126,12 +126,16 @@
                 </div>
                 {% if form %}
                 <div class="col-12 col-md-4">
-                <form class="mx-auto" style="max-width: 600px;" method="post" novalidate>
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                        <button class="btn btn-dark px-4">Subscribe</button>
-                    </div>
-                </form>
+                    <center>
+
+                        <form class="mx-auto" style="max-width: 600px;" method="post" novalidate>
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
+                                <button class="btn btn-dark px-4">Subscribe</button>
+                            </div>
+                        </form>
+                    </center>
             </div>
                 {% endif %}
             </div>

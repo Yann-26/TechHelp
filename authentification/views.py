@@ -20,12 +20,16 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 from authentification.forms import UserUpdateForm
 
+
 # Create your views here.
 
 
 def home(request):
     return render(request , 'principal/index.html')
 
+def edit_profile(request):
+    datas = {}
+    return render(request, 'edit_profile.html', datas)
 
 
 def login_or_register(request):
@@ -33,6 +37,7 @@ def login_or_register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         action = request.POST.get('action')
+        print(action)
 
         if action == "login":
             user_obj = User.objects.filter(username = username).first()
@@ -94,7 +99,7 @@ def login_or_register(request):
             except Exception as e:
                 print(e)
             
-    return render(request, 'login_or_register.html', {'action_url': '/login_or_register/'})
+    return render(request, 'login_or_register.html')
 
 
 
@@ -122,11 +127,11 @@ def verify(request , auth_token):
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Your account is already verified.')
-                return redirect('/authentification/login')
+                return redirect('login_or_register')
             profile_obj.is_verified = True
             profile_obj.save()
             messages.success(request, 'Your account has been verified.')
-            return redirect('/authentification/login_attempt')
+            return redirect('login_or_register')
         else:
             return redirect('/error')
     except Exception as e:
@@ -197,3 +202,7 @@ def profile(request, username):
         return render(request, 'profile.html', context={'form': form})
 
     return redirect("Home")
+
+
+
+

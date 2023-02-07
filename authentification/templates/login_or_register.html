@@ -23,6 +23,7 @@
 			<input type="text" placeholder="Username" name="username">
 			<input type="text" placeholder="First name" name="first_name">
 			<input type="text" placeholder="Last name" name="last_name">
+			<input type="text" hidden value="register" name="action">			
 			<input type="email" placeholder="Your email" name="email">
 			<input type="password" placeholder="Create password" name="password">
 			<input type="password" placeholder="Confirm password" name="password_confirm">
@@ -30,7 +31,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form method="post" action="{{ action_url }}">
+		<form method="post" action="#" >
             {% csrf_token %}
 			<h1>Sign in</h1>
 			<div class="social-container">
@@ -40,7 +41,8 @@
 			</div>
 			<span>or use your account</span>
 			<input type="text" placeholder="Username" name="username">
-			<input type="password" placeholder="Create password" name="password">
+			<input type="text" hidden value="login" name="action">			
+			<input type="password" placeholder="Enter password" name="password">
             Forgot password?<a href="{% url 'password_reset' %}" style="float:right; font-size: 15px;">Reset now</a>
 			<button type="submit" >Sign In</button>
 		</form>
