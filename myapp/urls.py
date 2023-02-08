@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
+
 
 urlpatterns = [
     path('', views.principal, name="Home"),
@@ -29,5 +32,6 @@ urlpatterns = [
     path('testimonial/', views.testimonial, name="testimonial"),
     path('set_cookie/', views.set_cookie, name='set_cookie'),
     path('set_cookie/', views.view, name='set_cookie'),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     
 ]

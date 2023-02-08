@@ -32,13 +32,13 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', datas)
 
 
-def login_or_register(request):
+def login_or_register(request):  
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         action = request.POST.get('action')
-        print(action)
-
+        
+             # connexion
         if action == "login":
             user_obj = User.objects.filter(username = username).first()
             if user_obj is None:
@@ -46,20 +46,17 @@ def login_or_register(request):
                 return redirect('login_or_register')
 
             profile_obj = Profile.objects.filter(user = user_obj ).first()
-
             if not profile_obj.is_verified:
                 messages.success(request, 'Profile is not verified check your mail.')
                 return redirect('login_or_register')
-
             user = authenticate(username = username , password = password)
             if user is None:
                 messages.success(request, 'Wrong password.')
                 return redirect('login_or_register')
-
             login(request , user)
             return redirect('/')
 
-
+            #### creation de compte
         elif action == "register":
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
@@ -69,16 +66,13 @@ def login_or_register(request):
             if password != password_confirm:
                 messages.success(request, 'Passwords do not match.')
                 return redirect('login_or_register')
-
             try:
                 if User.objects.filter(username=username).first():
                     messages.success(request, 'Username is taken.')
                     return redirect('login_or_register')
-
                 if User.objects.filter(email=email).first():
                     messages.success(request, 'Email is taken.')
                     return redirect('login_or_register')
-
                 user_obj = User(
                     username=username,
                     first_name=first_name,
@@ -95,13 +89,9 @@ def login_or_register(request):
                 profile_obj.save()
                 send_mail_after_registration(email, auth_token)
                 return redirect('/token')
-
             except Exception as e:
                 print(e)
-            
     return render(request, 'login_or_register.html')
-
-
 
 
 def success(request):

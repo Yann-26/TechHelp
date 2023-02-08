@@ -3,7 +3,7 @@ from .models import Contact, Banner, Navbar, Topbar, contactUs
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-from .models import Comment
+from .models import Comment, TeamMembers
 from django.http import HttpResponse
 import datetime
 
@@ -99,8 +99,9 @@ def blog(request):
 
 
 def team(request):
+    teams = TeamMembers.objects.filter()
     datas = {
-
+        'teams': teams
     }
     return render(request, 'principal/team.html', datas)
 

@@ -32,23 +32,24 @@ def new(request):
     else:
         return render(request, 'index2.html', {'form': SubscriberForm()})
 
-####VUE DE CONFIRMATION 
+
+####VUE DE CONFIRMATION A LA SOUSCRIPTION PAR EMAIL
 def confirm(request):
-    sub = Subscriber.objects.get(email=request.GET['email'])
+    sub = Subscriber.objects.get(email=request.GET('email'))
     if sub.conf_num == request.GET['conf_num']:
         sub.confirmed = True
         sub.save()
-        return render(request, 'index2.html', {'email': sub.email, 'action': 'confirmed'})
+        return render(request, 'principal/index.html', {'email': sub.email, 'action': 'confirmed'})
     else:
-        return render(request, 'index2.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'principal/index.html', {'email': sub.email, 'action': 'denied'})
 
 
 ### DESOUSCRIPTION 
 def delete(request):
-    sub = Subscriber.objects.get(email=request.GET['email'])
+    sub = Subscriber.objects.get(email=request.GET('email'))
     if sub.conf_num == request.GET['conf_num']:
         sub.delete()
-        return render(request, 'index2.html', {'email': sub.email, 'action': 'unsubscribed'})
+        return render(request, 'principal/index.html', {'email': sub.email, 'action': 'unsubscribed'})
     else:
-        return render(request, 'index2.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'principal/index.html', {'email': sub.email, 'action': 'denied'})
 

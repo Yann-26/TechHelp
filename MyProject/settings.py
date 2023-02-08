@@ -53,30 +53,40 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentification',
+    'cookies.apps.CookiesConfig',
     
-    'myapp',
-    'newsletter',
+    'myapp.apps.MyappConfig',
+    'newsletter.apps.NewsletterConfig',
     'crispy_forms',
+    'rest_framework',
     # 'django.contrib.sites',
     # 'allauth',
     # 'allauth.account',
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
    
-    'rest_framework',
     'corsheaders',
     # 'captcha',
     'graphene_django',
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 
 GRAPHENE = {   
-    "SCHEMA": "api.schema.schema"
+    "SCHEMA": "myapp.schema.schema"
 }
 
 
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,8 +118,9 @@ TEMPLATES = [
     },
 ]
 
+# QLcyP110OnSv9bxpmkTyhneKJRChyf9lK0xuYvAn : twilio phone 
 
-
+# API KEY : nCQtA8DCcj4qLQhVu2vQLPhkJGAwTCCw
 
 # AUTHENTICATION_BACKENDS = (
    

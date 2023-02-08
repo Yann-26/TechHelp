@@ -5,7 +5,7 @@
         "fields": {
             "fullname": "Amou Jean Michel",
             "designation": "Developpeur et rappeur",
-            "photo": "/static/img/amou.jpg",
+            "photo": "amou.jpg",
             "date_add" : "2022-01-01 00:00:00",
             "date_update": "2022-01-01 00:00:00",
             "status": true
@@ -18,7 +18,7 @@
         "fields": {
             "fullname": "Assiri Yann Clovis",
             "designation": "Developpeur Flutter",
-            "photo": "/static/img/amou.jpg",
+            "photo": "amou.jpg",
             "date_add" : "2022-01-01 00:00:00",
             "date_update": "2022-01-01 00:00:00",
             "status": true
@@ -31,7 +31,7 @@
         "fields": {
             "fullname": "Brou Ramissou Abraham",
             "designation": "Ingenieur sécurité",
-            "photo": "/static/img/amou.jpg",
+            "photo": "amou.jpg",
             "date_add" : "2022-01-01 00:00:00",
             "date_update": "2022-01-01 00:00:00",
             "status": true
