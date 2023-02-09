@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentification',
     'cookies.apps.CookiesConfig',
-    
+      
     'myapp.apps.MyappConfig',
     'newsletter.apps.NewsletterConfig',
     'crispy_forms',

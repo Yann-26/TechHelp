@@ -47,7 +47,20 @@
     </div>
 </div>
 <!-- Carousel End -->
-
+<!--  COOKIES -->
+<div id="cookiePopup" class="hide">
+    <img src="{% static 'cookie.png' %}" alt="Cookie image">
+    <p>
+      Notre site Web utilise des cookies pour fournir votre expérience de navigation et
+      des informations pertinentes. Avant de continuer à utiliser notre site Web, vous acceptez &
+      de notre <a href="#">Politique de cookies et de confidentialité.</a>
+    </p>
+    <div id="cookieButtons">
+        <button id="declineCookie">Refuser</button>
+        <button id="acceptCookie">Accepter</button>
+      </div>
+  </div>
+  
     <!-- About Start -->
     <div class="container-fluid bg-secondary p-0">
         <div class="row g-0">
@@ -105,8 +118,10 @@
                     <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
                         <i class="fa fa-user-tie fa-2x"></i>
                     </div>
-                    <h3 class="mb-3">Business Research</h3>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor ipsum amet eos erat ipsum lorem et sit sed stet lorem</p>
+                    <a href="">
+                        <h3 class="mb-3">Business Research</h3>
+                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor ipsum amet eos erat ipsum lorem et sit sed stet lorem</p>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
@@ -419,6 +434,7 @@
                                 <small class="text-uppercase me-3"><i class="bi bi-bookmarks me-2"></i>Web Design</small>
                             </div>
                             <a class="h4" href="">Magna sea dolor ipsum amet lorem eos</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -426,11 +442,9 @@
         </div>
     </div>
     <!-- Blog End -->
-
-
-  <br><br>
-
-
+    
+     
+    <!-- Script -->
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

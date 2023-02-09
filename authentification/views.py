@@ -27,8 +27,10 @@ from authentification.forms import UserUpdateForm
 def home(request):
     return render(request , 'principal/index.html')
 
-def edit_profile(request):
-    datas = {}
+def edit_profile(request):           
+    datas = {
+        
+    }
     return render(request, 'edit_profile.html', datas)
 
 
@@ -37,7 +39,7 @@ def login_or_register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         action = request.POST.get('action')
-        
+        print(action)
              # connexion
         if action == "login":
             user_obj = User.objects.filter(username = username).first()
@@ -55,14 +57,12 @@ def login_or_register(request):
                 return redirect('login_or_register')
             login(request , user)
             return redirect('/')
-
             #### creation de compte
         elif action == "register":
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
             password_confirm = request.POST.get('password_confirm')
-
             if password != password_confirm:
                 messages.success(request, 'Passwords do not match.')
                 return redirect('login_or_register')
@@ -101,12 +101,10 @@ def success(request):
 def token_send(request):
     return render(request , 'token_send.html')
 
-
 def signout(request):
     logout(request)
     messages.success(request, 'logout successfully!')
     return redirect('Home')
-
 
 ##### 
 def verify(request , auth_token):
