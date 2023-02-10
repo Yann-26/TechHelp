@@ -170,26 +170,49 @@ def password_reset_request(request):
 
 
 
-def profile(request, username):
+@login_required
+def profile_information(request, username):
+    users = Profile_information.objects.all()
+    user = request.user
+    profile = Profile_information() 
     if request.method == 'POST':
-        user = request.user
-        form = UserUpdateForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
-            user_form = form.save()
+        city = request.POST.get('city', '')
+        country = request.POST.get('country', '') 
+        phone_number = request.POST.get('phone_number', '')
+        Birthday = request.POST.get('Birthday', '')
+        Profession = request.POST.get('Profession', '')
+        Bio = request.POST.get('Bio', '')
+        profile_photo = request.POST.get('profile_photo', '')
+        cover = request.POST.get('cover', '')
+        gender = request.POST.get('gender', '')
+        Address = request.POST.get('Address', '')
+        Rela_status = request.POST.get('Rela_status', '')
+        location = request.POST.get('location', '')
 
-            messages.success(request, f'{user_form}, Your profile has been updated!')
-            return redirect('profile', user_form.username)
-
-        for error in list(form.errors.values()):
-            messages.error(request, error)
-
+        profile.city = city
+        profile.country = country
+        profile.phone_number = phone_number
+        profile.Birthday = Birthday
+        profile.Profession = Profession
+        profile.Bio = Bio
+        profile.profile_photo = profile_photo
+        profile.cover = cover
+        profile.gender = gender
+        profile.Address = Address
+        profile.Rela_status = Rela_status
+        profile.location = location
+        profile.save()
+        
     user = get_user_model().objects.filter(username=username).first()
+    datas = {
+            'users': users
+        }
     if user:
-        form = UserUpdateForm(instance=user)
-        # form.fields['description'].widget.attrs = {'rows': 1}
-        return render(request, 'profile.html', context={'form': form})
+        profile = Profile_information()
+        return render(request, 'profile.html', datas)
 
-    return redirect("Home")
+    return redirect("Home")   
+
 
 
 

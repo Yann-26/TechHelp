@@ -6,21 +6,10 @@ from django.conf import settings
 from .models import Comment, TeamMembers
 from django.http import HttpResponse
 import datetime
+from django.contrib.auth.decorators import login_required
 
 
 
-# def set_cookie(request):
-#     response = redirect('home')
-#     if request.method == 'POST':
-#         cookie_name = request.POST.get('cookie_name')
-#         cookie_value = request.POST.get('cookie_value')
-
-#         if cookie_name and cookie_value:
-#             max_age = 30 * 24 * 60 * 60  # 30 days in seconds
-#             expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), '%a, %d-%b-%Y %H:%M:%S GMT')
-#             response.set_cookie(cookie_name, cookie_value, max_age=max_age, expires=expires, domain=None, secure=False)
-
-#     return response
 def view(request):
     response = HttpResponse("hello")
     set_cookie(response, 'name', 'jujule')
@@ -46,7 +35,7 @@ def set_cookie(response, key, value, days_expire=7):
     )
 
 
-
+@login_required
 def detail(request):
     if request.method == 'POST':
         name = request.POST.get('name', '')
@@ -59,7 +48,6 @@ def detail(request):
         commentaire.commenter = comment
         if parent_id:
             commentaire.parent_comment = Comment.objects.get(id=parent_id)
-
         commentaire.save()
     commentaires = Comment.objects.all()
     datas = {

@@ -65,10 +65,15 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
    
-    'corsheaders',
+    
     # 'captcha',
     'graphene_django',
+    
+    
+
+    # 
 ]
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

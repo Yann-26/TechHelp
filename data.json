@@ -6,36 +6,117 @@
             "fullname": "Amou Jean Michel",
             "designation": "Developpeur et rappeur",
             "photo": "amou.jpg",
-            "date_add" : "2022-01-01 00:00:00",
+            "date_add": "2022-01-01 00:00:00",
             "date_update": "2022-01-01 00:00:00",
             "status": true
         }
     },
-
     {
-        "model": "myapp.TeamMembers",
+        "model": "myapp.Navbar",
+        "pk": 1,
+        "fields": {
+            "logo": "navbar_logo.jpg",
+            "home": "Home",
+            "slogan": "Our company's slogan",
+            "dropdown": "Dropdown",
+            "service": "Service",
+            "blog_grid": "Blog Grid",
+            "blog_detail": "Blog Detail",
+            "features": "Features",
+            "quote": "Quote",
+            "team": "Team",
+            "testimonial": "Testimonial",
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+    {
+        "model": "myapp.Contact",
+        "pk": 1,
+        "fields": {
+            "nom": "John Doe",
+            "email": "johndoe@example.com",
+            "subject": "Inquiry about your products",
+            "message": "Hello, I would like to know more about your products.",
+            "status": true,
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00"
+        }
+    },
+    {
+        "model": "myapp.Contact",
+        "pk": 1,
+        "fields": {
+            "nom": "John Doe",
+            "email": "johndoe@example.com",
+            "subject": "Inquiry about your products",
+            "message": "Hello, I would like to know more about your products.",
+            "status": true,
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00"
+        }
+    },
+    {
+        "model": "myapp.Topbar",
+        "pk": 1,
+        "fields": {
+            "paqs": "FAQs",
+            "support": "Support",
+            "privacy": "Privacy",
+            "policy": "Policy",
+            "career": "Career",
+            "my_mail": "contact@example.com",
+            "number": "555-555-5555",
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+    {
+        "model": "myapp.contactUs",
+        "pk": 1,
+        "fields": {
+            "title": "Contact Us",
+            "message": "We'd love to hear from you!",
+            "mapUrl": "https://maps.google.com/maps?q=example",
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+    {
+        "model": "myapp.Comment",
+        "pk": 1,
+        "fields": {
+            "nom": "John Doe",
+            "email": "johndoe@example.com",
+            "commenter": "This is a great blog post!",
+            "parent_comment": null,
+            "date_add": "2022-01-01 00:00:00",
+            "date_update": "2022-01-01 00:00:00",
+            "status": true
+        }
+    },
+    {
+        "model": "authentification.Profile",
         "pk": 2,
         "fields": {
-            "fullname": "Assiri Yann Clovis",
-            "designation": "Developpeur Flutter",
-            "photo": "amou.jpg",
-            "date_add" : "2022-01-01 00:00:00",
-            "date_update": "2022-01-01 00:00:00",
-            "status": true
+            "username": "user1",
+            "firstname": "firstname",
+            "lastname": "lastname",
+            "email": "johndoe@example.com",
+            "city": "New York",
+            "country": "USA",
+            "phone_number": "+1 123 456 7890",
+            "Birthday": "2000-01-01",
+            "Profession": "Software Engineer",
+            "Bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "profile_photo": "profile_photos/john_doe_profile.jpg",
+            "cover": "photo_cover/john_doe_cover.jpg",
+            "gender": "M",
+            "Address": "123 Main St.",
+            "created_at": "2022-01-01 00:00:00"
         }
-    },
-
-    {
-        "model": "myapp.TeamMembers",
-        "pk": 3,
-        "fields": {
-            "fullname": "Brou Ramissou Abraham",
-            "designation": "Ingenieur sécurité",
-            "photo": "amou.jpg",
-            "date_add" : "2022-01-01 00:00:00",
-            "date_update": "2022-01-01 00:00:00",
-            "status": true
         }
-    }
-
 ]

@@ -8,10 +8,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
 <body>
+	<!-- Dans votre template HTML -->
+	
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+			<div class="alert alert-danger" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	
     <!-- ######################################################################################################## -->
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form method="post" action="{{ action_url }}">
+		<form method="post" action="{{ action_url }}" >
             {% csrf_token %}
 			<h1>Create Account</h1>
 			<div class="social-container">
@@ -27,7 +37,7 @@
 			<input type="email" placeholder="Your email" name="email">
 			<input type="password" placeholder="Create password" name="password">
 			<input type="password" placeholder="Confirm password" name="password_confirm">
-			<button>Sign Up</button>
+			<button type="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
@@ -44,7 +54,7 @@
 			<input type="text" hidden value="login" name="action">			
 			<input type="password" placeholder="Enter password" name="password">
             Forgot password?<a href="{% url 'password_reset' %}" style="float:right; font-size: 15px;">Reset now</a>
-			<button type="submit" >Sign In</button>
+			<button type="submit">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">

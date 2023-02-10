@@ -134,7 +134,5 @@ document.getElementById("declineCookie").addEventListener("click", () => {
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify({ choice: "declined" }));
 });
-
-
   };
   
