@@ -11,6 +11,7 @@ urlpatterns = [
     path('error' , error_page , name="error"),
     path('signout', signout, name='signout'),
     path('profile/<username>', profile_information, name='profile'),
+    path('edit_profile/', edit_profile, name='edit_profile'),
     path("password_reset", password_reset_request, name="password_reset"),
     
 ]

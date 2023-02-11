@@ -1,309 +1,456 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 
 <style>
-    body{
-    background-color: #f3f3f3;
-   
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000;
+	body {
+		background-color: #f3f3f3;
 
-}
-p {
-    font-size: 0.875rem;
-    margin-bottom: .5rem;
-    line-height: 1.3rem;
-}
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #000;
 
+	}
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e7eaed;
-    border-radius: 0;
-}
-.card .card-description {
-    margin-bottom: .875rem;
-    font-weight: 400;
-    color: #76838f;
-}
+	p {
+		font-size: 0.875rem;
+		margin-bottom: .5rem;
+		line-height: 1.3rem;
+	}
 
 
+	.card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		word-wrap: break-word;
+		background-color: #fff;
+		background-clip: border-box;
+		border: 1px solid #e7eaed;
+		border-radius: 0;
+	}
 
-
-
-
-.profile-header {
-	height: 150px;
-	width: 100%;
-	position: relative;
-}
-
-.cover-image {
-	height: 150px;
-	width: 100%;
-	overflow: hidden;
-}
+	.card .card-description {
+		margin-bottom: .875rem;
+		font-weight: 400;
+		color: #76838f;
+	}
 
 
 
-.user-image {
-	position: absolute;
-	height: 80px;
-	width: 80px;
-	border-radius: 50%;
-	bottom: -50%;
-	left: 50%;
-	/* top: 50%; */
-	transform: translate(-50%, -50%);
-	z-index: 5;
-}
+	.profile-header {
+		height: 150px;
+		width: 100%;
+		position: relative;
+	}
 
-.user-image img {
-	height: 80px;
-	width: 80px;
-	border-radius: 50%;
-	top: -40px;
-	border: 5px solid #777;
-}
-
-.profile-card .profile-content {
-	padding: 50px 20px 30px 20px;
-}
+	.cover-image {
+		height: 150px;
+		width: 100%;
+		overflow: hidden;
+	}
 
 
 
-.profile-card .profile-name {
-	font-size: 1.2rem;
-	color: #3249b9;
-	font-weight: 600;
-	text-align: center;
-}
+	.user-image {
+		position: absolute;
+		height: 80px;
+		width: 80px;
+		border-radius: 50%;
+		bottom: -50%;
+		left: 50%;
+		/* top: 50%; */
+		transform: translate(-50%, -50%);
+		z-index: 5;
+	}
 
-.profile-card .profile-designation {
-	font-size: 13px;
-	color: #777;
-	text-align: center;
-}
+	.user-image img {
+		height: 80px;
+		width: 80px;
+		border-radius: 50%;
+		top: -40px;
+		border: 5px solid #777;
+	}
 
-.profile-card .profile-description {
-	padding: 10px;
-	font-size: 13px;
-	color: #777;
-	margin: 5px 0px;
-	background-color: #F1F2F3;
-	border-radius: 5px;
-}
-
-.profile-card ul.profile-info-list {
-	padding: 0;
-	margin: 10px 0;
-	list-style: none;
-	font-size: 1rem;
-	font-weight: 500;
-	color: #777;
-}
+	.profile-card .profile-content {
+		padding: 50px 20px 30px 20px;
+	}
 
 
 
+	.profile-card .profile-name {
+		font-size: 1.2rem;
+		color: #3249b9;
+		font-weight: 600;
+		text-align: center;
+	}
 
-.profile-card ul.profile-info-list a {
-	text-decoration: none;
-	color:inherit;
-}
+	.profile-card .profile-designation {
+		font-size: 13px;
+		color: #777;
+		text-align: center;
+	}
 
+	.profile-card .profile-description {
+		padding: 10px;
+		font-size: 13px;
+		color: #777;
+		margin: 5px 0px;
+		background-color: #F1F2F3;
+		border-radius: 5px;
+	}
 
-
-.profile-card a.profile-info-list-item {
-	margin: 10px 0;
-	padding:15px;
-	background-color: #F1F2F3;
-	display: block;
-	 -webkit-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-
-}
-
-.profile-card a.profile-info-list-item:hover {
-    background-color: #9E9E9E;
-    color: white;
-	 -webkit-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-	
-}
-
-
-.profile-card a.profile-info-list-item  i {
-	padding: 10px;
-	
-}
-
-ul.about {
-    list-style: none;
-    color: black;
-	padding: 0;
-}
-li.about-items {
-    margin: 10px;
-    font-size: 0.9rem;
-    /* font-family: sans-serif; */
-    /* font-weight: 400; */
-}
+	.profile-card ul.profile-info-list {
+		padding: 0;
+		margin: 10px 0;
+		list-style: none;
+		font-size: 1rem;
+		font-weight: 500;
+		color: #777;
+	}
 
 
 
-li.about-items i {
-color:#607d8b;
-}
 
-span.about-item-name {
-    width: 100px;
-    display: inline-flex;
-	    margin-left: 10px;
-}
+	.profile-card ul.profile-info-list a {
+		text-decoration: none;
+		color: inherit;
+	}
 
 
-span.about-item-detail {
-    display: inline-flex;
-    width: calc(100% - 160px);
-}
-span.about-item-detail > button{
-  margin-right: 10px;
-}
 
-.btn.btn-icon {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-}
-.btn.btn-rounded {
-    border-radius: 50px;
-}
+	.profile-card a.profile-info-list-item {
+		margin: 10px 0;
+		padding: 15px;
+		background-color: #F1F2F3;
+		display: block;
+		-webkit-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
 
-a.about-item-edit {
-    float: right;
-}
+	}
+
+	.profile-card a.profile-info-list-item:hover {
+		background-color: #9E9E9E;
+		color: white;
+		-webkit-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+
+	}
+
+
+	.profile-card a.profile-info-list-item i {
+		padding: 10px;
+
+	}
+
+	ul.about {
+		list-style: none;
+		color: black;
+		padding: 0;
+	}
+
+	li.about-items {
+		margin: 10px;
+		font-size: 0.9rem;
+		font-family: sans-serif; 
+		font-weight: 400;
+	}
+
+
+
+	li.about-items i {
+		color: #607d8b;
+	}
+
+	span.about-item-name {
+		width: 100px;
+		display: inline-flex;
+		margin-left: 10px;
+	}
+
+
+	span.about-item-detail {
+		display: inline-flex;
+		width: calc(100% - 160px);
+	}
+
+	span.about-item-detail>button {
+		margin-right: 10px;
+	}
+
+	.btn.btn-icon {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+	}
+
+	.btn.btn-rounded {
+		border-radius: 50px;
+	}
+
+	a.about-item-edit {
+		float: right;
+	}
 </style>
 <!------ Include the above in your HEAD tag ---------->
 
 
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  
+
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
-		<!-- partial -->
-		<div class="main-panel">
-			<div class="container">
+<!-- partial -->
+<div class="main-panel">
+	<div class="container">
 
 
-				<div class="row">
-					<div class="col-md-4 grid-margin stretch-card">
-						<div class="card">
-							<div class="profile-card">
-								<div class="profile-header">
-									
-									{% for user in users %}
-									<div class="cover-image">
-										<img src="{{ user.cover.url }} " alt="image profile {{resquest.user.username}}" class="img img-fluid">
-									</div>
-									<div class="user-image">
-										<img src="{{ user.profile_photo.url }}" alt="image cover {{request.user.username}}" class="img">
-									</div>
-								</div>
-
-								<div class="profile-content">
-									<div class="profile-name">{{request.user.username}}</div>
-									<div class="profile-designation">{{user.Profession}}</div>
-									<p class="profile-description">{{user.Bio}}</p>
-									<ul class="profile-info-list">
-										<a href="" class="profile-info-list-item"><i class="mdi mdi-eye"></i>Timeline</a>
-										<a href="" class="profile-info-list-item"><i class="mdi mdi-bookmark-check"></i>Saved</a>
-										<a href="" class="profile-info-list-item"><i class="mdi mdi-movie"></i>Medias</a>
-										<a href="" class="profile-info-list-item"><i class="mdi mdi-account"></i>About</a>
-									</ul>
-								</div>
+		<div class="row">
+			<div class="col-md-4 grid-margin stretch-card">
+				<div class="card">
+					<div class="profile-card">
+						{% for user in users %}
+						<div class="profile-header">
+							<div class="cover-image">
+								{% if user.cover %}
+								<img src="{{ user.cover.url }} " alt="image profile {{resquest.user.username}}"							
+									class="img img-fluid">
+									{% endif %}
+							</div>
+							<div class="user-image">
+								{% if user.profile_photo %}
+								<img src="{{ user.profile_photo.url }}" alt="image cover {{request.user.username}}"
+									class="img">
+									{% endif %}
 							</div>
 						</div>
-					</div>
-					<div class="col-md-8 grid-margin stretch-card">
-						<div class="card">
-							<div class="card-body">
-								<p class="card-title font-weight-bold">About</p>
-								<hr>
-								<p class="card-description">User Information</p>							
-								<ul class="about">
-									<li class="about-items"><i class="mdi mdi-account icon-sm ">
-									</i><span class="about-item-name">Name:</span><span class="about-item-detail">{{request.user.first_name}}</span>
-										<a href="#" class="about-item-edit" onclick="showForm()">Edit</a>
-									<li class="about-items"><i class="mdi mdi-mail-ru icon-sm ">
-									</i><span class="about-item-name">Prenom:</span><span class="about-item-detail">{{request.user.last_name}}</span> 
-									<a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-lock-outline icon-sm "></i><span class="about-item-name">Password:</span>
-										<span class="about-item-detail"><a href="{ % url 'password_reset' %}">Modifier votre mot de passe</a></span> 
-									<li class="about-items"><i class="mdi mdi-format-align-left icon-sm "></i><span class="about-item-name">Bio:</span>
-										<span class="about-item-detail">{{user.Bio}}</span>
-										 <a href="" class="about-item-edit">Edit</a></li>								
-                       <li class="about-items"><i class="mdi mdi-trophy-variant-outline icon-sm ">
-					   </i><span class="about-item-name">Badges:</span><span class="about-item-detail">
-                       <button type="button" class="btn btn-success btn-rounded btn-icon">
-                        <i class="mdi mdi-star text-white"></i>
-                      </button>  
-                        <button type="button" class="btn btn-info btn-rounded btn-icon">
-                        <i class="mdi mdi-check text-white"></i>
-                      </button>
-                       <button type="button" class="btn btn-danger btn-rounded btn-icon">
-                        <i class="mdi mdi-check text-white"></i>
-                      </button>
-                      </span> <a href="" class="about-item-edit">View</a></li>
-								</ul>
-								<p class="card-description">Contact Information</p>
-								<ul class="about">
-									<li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span class="about-item-name">Phone:</span>
-										<span class="about-item-detail">{{user.phone_number}}</span><a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Address:</span>
-										<span class="about-item-detail">{{user.Address}}</span> <a href="" class="about-item-edit">Edit</a></li>
-										<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Your City:</span>
-										<span class="about-item-detail">{{user.city}}</span> <a href="" class="about-item-edit">Edit</a></li>
-										<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Your Country:</span>
-										<span class="about-item-detail">{{user.country}}</span> <a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-email-outline icon-sm "></i><span class="about-item-name">Email:</span>
-										<span class="about-item-detail"><a href="">{{request.user.email}}</a></span> <a href="" class="about-item-edit">Edit</a></li>
-									
-									</ul>
-								<p class="card-description">Basic Information</p>
-								<ul class="about">
-									<li class="about-items"><i class="mdi mdi-cake icon-sm "></i><span class="about-item-name">Birthday:</span>
-										<span class="about-item-detail">{{user.Birthday}}</span><a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Gender:</span>
-										<span class="about-item-detail">{{user.gender}}</span> <a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-clipboard-account icon-sm "></i><span class="about-item-name">Profession:</span>
-										<span class="about-item-detail">{{user.Profession}}</span> <a href="" class="about-item-edit">Edit</a></li>
-									<li class="about-items"><i class="mdi mdi-human-male-female icon-sm "></i><span class="about-item-name">Status:</span>
-										<span  class="about-item-detail">{{user.Rela_status}}</span> <a href="" class="about-item-edit">Edit</a></li>
-								</ul>
 
-								{% endfor %}
-							</div>
+						<div class="profile-content">
+							<div class="profile-name">{{request.user.username}}</div>
+							<div class="profile-designation">{{user.Profession}}</div>
+							<p class="profile-description">{{user.Bio}}</p>
+							<ul class="profile-info-list">
+								<a href="" class="profile-info-list-item"><i class="mdi mdi-eye"></i>Timeline</a>
+								<a href="" class="profile-info-list-item"><i
+										class="mdi mdi-bookmark-check"></i>Saved</a>
+								<a href="" class="profile-info-list-item"><i class="mdi mdi-movie"></i>Medias</a>
+								<a href="" class="profile-info-list-item"><i class="mdi mdi-account"></i>About</a>
+							</ul>
 						</div>
 					</div>
-
 				</div>
 			</div>
-		
+			<div class="col-md-8 grid-margin stretch-card">
+				<div class="card">
+					<div class="card-body">
+						<p class="card-title font-weight-bold">About</p>
+						<hr>
+						<p class="card-description">User Information</p>
+						<ul class="about">
+							<li class="about-items"><i class="mdi mdi-account icon-sm ">
+								</i><span class="about-item-name">Name:</span><span
+									class="about-item-detail">{{request.user.first_name}}</span>
+								
+							<li class="about-items"><i class="mdi mdi-mail-ru icon-sm ">
+								</i><span class="about-item-name">Prenom:</span><span
+									class="about-item-detail">{{request.user.last_name}}</span>
+								
+							</li>
+							<li class="about-items"><i class="mdi mdi-lock-outline icon-sm "></i><span
+									class="about-item-name">Password:</span>
+								<span class="about-item-detail"><a href="{ % url 'password_reset' %}">Modifier votre mot
+										de passe</a></span>
+							<li class="about-items"><i class="mdi mdi-format-align-left icon-sm "></i><span
+									class="about-item-name">Bio:</span>
+								<span class="about-item-detail">{{user.Bio}}</span>
+								
+							</li>
+							<li class="about-items"><i class="mdi mdi-trophy-variant-outline icon-sm ">
+								</i><span class="about-item-name">Badges:</span><span class="about-item-detail">
+									<button type="button" class="btn btn-success btn-rounded btn-icon">
+										<i class="mdi mdi-star text-white"></i>
+									</button>
+									<button type="button" class="btn btn-info btn-rounded btn-icon">
+										<i class="mdi mdi-check text-white"></i>
+									</button>
+									<button type="button" class="btn btn-danger btn-rounded btn-icon">
+										<i class="mdi mdi-check text-white"></i>
+									</button>
+								</span>
+						</ul>
+						<p class="card-description">Contact Information</p>
+						<ul class="about">
+							<li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span
+									class="about-item-name">Phone:</span>
+								<span class="about-item-detail">{{user.phone_number}}</span>
+							</li>
+							<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span
+									class="about-item-name">Address:</span>
+								<span class="about-item-detail">{{user.Address}}</span> 
+							</li>
+							<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span
+									class="about-item-name">Your City:</span>
+								<span class="about-item-detail">{{user.city}}</span> 
+							</li>
+							<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span
+									class="about-item-name">Your Country:</span>
+								<span class="about-item-detail">{{user.country}}</span> 
+							</li>
+							<li class="about-items"><i class="mdi mdi-email-outline icon-sm "></i><span
+									class="about-item-name">Email:</span>
+								<span class="about-item-detail"><a href="">{{request.user.email}}</a></span> 
+							</li>
+						</ul>
+						<p class="card-description">Basic Information</p>
+						<ul class="about">
+							<li class="about-items"><i class="mdi mdi-cake icon-sm "></i><span
+									class="about-item-name">Birthday:</span>
+								<span class="about-item-detail">{{user.Birthday}}</span>
+							</li>
+							<li class="about-items"><i class="mdi mdi-account icon-sm "></i><span
+									class="about-item-name">Gender:</span>
+								<span class="about-item-detail">{{user.gender}}</span> 
+							</li>
+							<li class="about-items"><i class="mdi mdi-clipboard-account icon-sm "></i><span
+									class="about-item-name">Profession:</span>
+								<span class="about-item-detail">{{user.Profession}}</span> 
+							</li>
+							<li class="about-items"><i class="mdi mdi-human-male-female icon-sm "></i><span
+									class="about-item-name">Status:</span>
+								<span class="about-item-detail">{{user.Rela_status}}</span>
+							</li>
+						</ul>
+						<button type="button" style="margin-left: 80%; background-color: peru;" class="btn btn-primary" data-toggle="modal" data-target="#profileModal">
+							Modifier le profil
+						</button>
+						
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
 		</div>
-		<!-- main-panel ends -->
+	</div>
+
+</div>
+<!-- main-panel ends -->
+<script>
+	$(document).ready(function () {
+	  $('#profileModal').modal({
+		show: false,
+		backdrop: 'static',
+	  });
+	});
+	</script>
+	
+
+<!-- ########################################################################################## -->
+		<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="profileModal"  data-bs-keyboard="false" data-bs-show="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h4 class="modal-title text-right" id="profileModalLabel">Profile Settings</h4>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+		  <div class="row mt-2">
+			<div class="col-md-12">
+				<label for="cover_photo">Photo de couverture</label>
+				<input type="file" id="cover_photo" name="cover">
+			  </div>
+			  <div class="col-md-12">
+				<label for="profile_photo">Photo de profil</label>
+				<input type="file" id="profile_photo" name="profile_photo">
+			  </div>
+			<div class="col-md-6">
+			  <label class="labels">Username</label>
+			  <input type="text" class="form-control" placeholder="Username" name="username">
+			</div>
+			<div class="col-md-6">
+			  <label class="labels">first name</label>
+			  <input type="text" class="form-control" placeholder="first name" name="first_name">
+			</div>
+			<div class="col-md-6">
+				<label class="labels">last name</label>
+				<input type="text" class="form-control" placeholder="first name" name="last_name">
+			  </div>
+			  <div class="col-md-6">
+				<label class="labels">Profession</label>
+				<input type="text" class="form-control" placeholder="Profession" name="Profession">
+			  </div>
+		  </div>
+		  <div class="row mt-3">
+			<div class="col-md-12">
+			  <label class="labels">Mobile Number</label>
+			  <input type="text" class="form-control" placeholder="enter phone number" name="phone_number">
+			</div>
+			<div class="col-md-12">
+			  <label class="labels">Address</label>
+			  <input type="text" class="form-control" placeholder="enter address" name="Address">
+			</div>
+			<div class="col-md-12">
+			  <label style="padding-top: 3%;" class="labels">Gender</label>
+			  <select name="gender" id="gender">
+				<option value="">--Your gener--</option>
+				<option name="gender">Male</option>
+				<option name="gender">Female</option>
+			</select>
+			</div>
+			<div class="col-md-12">
+			  <label class="labels">Country</label>
+			  <input type="text" class="form-control" placeholder="Your country" name="country">
+			</div>
+			<div class="col-md-12">
+			  <label class="labels">City</label>
+			  <input type="text" class="form-control" placeholder="Your city" name="city">
+			</div>
+			<div class="col-md-12">
+			  <label class="labels">Email ID</label>
+			  <input type="text" class="form-control" placeholder="enter email" name="email">
+			</div>
+			<div class="col-md-12">
+				<label style="padding-top: 3%;" class="labels">Status matrimaonial</label>
+				<select name="Rela_status" id="Rela_status">
+				  <option value="">--Your status--</option>
+				  <option name="Rela_status">Celibataire</option>
+				  <option name="Rela_status">En Couple</option>
+				  <option name="Rela_status">Divorcé</option>
+				  <option name="Rela_status">Veuf</option>
+				  <option name="Rela_status">Veuf</option>
+			  </select>
+			  </div>
+			  <div class="col-md-12">
+				<label class="labels" for="birthday">Birthday:</label>
+				<input type="date" name="Birthday" id="birthday" name="birthday">
+			  </div>
+			  <div class="col-md-12">
+				<label class="labels">Biographie</label>
+				<input type="text" class="form-control" placeholder="Bio">
+			  </div>
+		</div>
+		<div class="modal-footer">
+		  <button type="submit" class="btn btn-primary">Save Profile</button>
+		</div>
+		</form>
+	  </div>
+	</div>
+</div>
+</div>

@@ -56,4 +56,3 @@ class Profile_information(models.Model):
 #       select.appendChild(option);
 #     }
 #   });
-

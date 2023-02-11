@@ -18,7 +18,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
-from authentification.forms import UserUpdateForm
+
 
 
 # Create your views here.
@@ -110,8 +110,6 @@ def signout(request):
 def verify(request , auth_token):
     try:
         profile_obj = Profile.objects.filter(auth_token = auth_token).first()
-    
-
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Your account is already verified.')
@@ -172,46 +170,47 @@ def password_reset_request(request):
 
 @login_required
 def profile_information(request, username):
-    users = Profile_information.objects.all()
-    user = request.user
-    profile = Profile_information() 
-    if request.method == 'POST':
-        city = request.POST.get('city', '')
-        country = request.POST.get('country', '') 
-        phone_number = request.POST.get('phone_number', '')
-        Birthday = request.POST.get('Birthday', '')
-        Profession = request.POST.get('Profession', '')
-        Bio = request.POST.get('Bio', '')
-        profile_photo = request.POST.get('profile_photo', '')
-        cover = request.POST.get('cover', '')
-        gender = request.POST.get('gender', '')
-        Address = request.POST.get('Address', '')
-        Rela_status = request.POST.get('Rela_status', '')
-        location = request.POST.get('location', '')
-
-        profile.city = city
-        profile.country = country
-        profile.phone_number = phone_number
-        profile.Birthday = Birthday
-        profile.Profession = Profession
-        profile.Bio = Bio
-        profile.profile_photo = profile_photo
-        profile.cover = cover
-        profile.gender = gender
-        profile.Address = Address
-        profile.Rela_status = Rela_status
-        profile.location = location
-        profile.save()
-        
     user = get_user_model().objects.filter(username=username).first()
-    datas = {
-            'users': users
-        }
-    if user:
-        profile = Profile_information()
-        return render(request, 'profile.html', datas)
+    if not user:
+        return redirect("Home")
 
-    return redirect("Home")   
+    profile = None
+    try:
+        profile = Profile_information.objects.get(user=user)
+    except Profile_information.DoesNotExist:
+        profile = Profile_information(user=user)
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            city = request.POST.get('city', '')
+            country = request.POST.get('country', '') 
+            phone_number = request.POST.get('phone_number', '')
+            Birthday = request.POST.get('Birthday', '')
+            Profession = request.POST.get('Profession', '')
+            Bio = request.POST.get('Bio', '')
+            gender = request.POST.get('gender', '')
+            Address = request.POST.get('Address', '')
+            Rela_status = request.POST.get('Rela_status', '')
+            location = request.POST.get('location', '')
+
+            profile.city = city
+            profile.country = country
+            profile.phone_number = phone_number
+            profile.Birthday = Birthday
+            profile.Profession = Profession
+            profile.Bio = Bio
+            if request.FILES.get('cover', None):
+                profile.cover = request.FILES['cover']
+            if request.FILES.get('profile_photo', None):
+                profile.profile_photo = request.FILES['profile_photo']
+            profile.gender = gender
+            profile.Address = Address
+            profile.Rela_status = Rela_status
+            profile.location = location
+            profile.save()
+ 
+    return render(request, 'profile.html', {'user': user, 'profile': profile})
+  
 
 
 
