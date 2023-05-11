@@ -41,7 +41,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
     path('', include('authentification.urls')),
-    path('', include('newsletter.urls')),
+    # path('', include('newsletter.urls')),
     path('monapi', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),

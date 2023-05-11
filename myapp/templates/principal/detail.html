@@ -49,26 +49,60 @@
 
                 <!-- Comment List Start -->
                 <div class="mb-5">
-                        {% for commentaire in commentaires %}
-                        <div>
-                            {{ commentaire.count }}
-                        </div>
-                        <div class="d-flex mb-4">
-                            <img src="" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6><a href="">{{ commentaire.nom }}</a> <small><i>{{ commentaire.date_add }}</i></small></h6>
-                                <p>{{ commentaire.commenter }}</p>
-                                <button class="btn btn-sm btn-light" id="reply-button" onclick="showReplyForm('{{ commentaire.id }}')">Reply</button>
+                    {% for commentaire in commentaires %}
+                    <div class="d-flex mb-4">
+                        <img src="" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6><a href="">{{ commentaire.nom }}</a> <small><i>{{ commentaire.date_add }}</i></small></h6>
+                            <p>{{ commentaire.commenter }}</p>
+                                <div style="margin-left: 50px;">
+                            {% for reponse in commentaire.reponses.all %}
+                                <h6><a href="">{{ reponse.nom }}</a> <small><i>{{ reponse.date_add }}</i></small></h6>
+                                <p>{{ reponse.reponse_comment }}</p>
+                                {% endfor %}
                             </div>
+                            <button class="btn btn-sm btn-light" id="reply-button" onclick="showReplyForm('{{ commentaire.id }}')">Reply</button>
+                
+                           <!-- <button class="btn btn-sm btn-light" id="reply-button" onclick="showReplyForm('{{ reponse.commentaire.id }}')">Reply</button> -->
+                           <script>
+                            // Fonction pour afficher le formulaire de réponse
+                            function showReplyForm(commentId) {
+                              var formId = 'reply-form-' + commentId;
+                              var form = document.getElementById(formId);
+                              form.style.display = 'block';
+                            }
+                          
+                            // Récupérer tous les boutons "Reply" et leur ajouter un gestionnaire d'événements
+                            var replyButtons = document.getElementsById('reply-button');
+                            for (var i = 0; i < replyButtons.length; i++) {
+                              replyButtons[i].addEventListener('click', function() {
+                                var commentId = this.dataset.commentId;
+                                showReplyForm(commentId);
+                              });
+                            }
+                          </script>
+                          
+                            <form method="post" id="reply-form-{{ reponse.commentaire.id }}" style="display: none;">
+                                {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-6 col-sm-3">
+                                    <input type="text" class="form-control bg-white border-0" name="name" placeholder="Your Name" style="height: 55px;">
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <input type="email" class="form-control bg-white border-0" name="email" placeholder="Your Email" style="height: 55px;">
+                                </div>
+                                <div class="col-6">
+                                    <textarea class="form-control bg-white border-0" rows="5" name="comment" placeholder="Comment"></textarea>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Leave reponse</button>
+                                </div>
+                            </div>
+                              </form>
+                              
                         </div>
-                        <form method="post" class="reply-form" data-parent-id="{{ commentaire.id }}" style="display:none;">
-                            <input type="text" name="name" placeholder="Name">
-                            <input type="email" name="email" placeholder="Email">
-                            <textarea name="comment" placeholder="Comment"></textarea>
-                            <input type="hidden" name="parent_id" value="{{ commentaire.id }}">
-                            <input type="submit" value="Submit">
-                        </form>
-                        {% endfor %}
+                    </div>
+                {% endfor %}
                     </div>
                 <!-- Comment List End -->
                 <!-- Comment Form Start -->
@@ -190,13 +224,7 @@
         </div>
     </div>
     <!-- Blog End -->
-    <script>
-      function showReplyForm(id) {
-    var formId = 'reply-form-' + id;
-    var form = document.getElementById(formId);
-    form.style.display = 'block';
-        }
-        </script>
+   
         
 
    {% endblock content %}
@@ -207,12 +235,12 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>

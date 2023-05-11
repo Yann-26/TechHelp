@@ -18,6 +18,10 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
+
 
 
 
@@ -91,7 +95,7 @@ def login_or_register(request):
                 return redirect('/token')
             except Exception as e:
                 print(e)
-    return render(request, 'login_or_register.html')
+    return render(request, 'login_or_register.html') 
 
 
 def success(request):
@@ -176,43 +180,60 @@ def profile_information(request, username):
 
     profile = None
     try:
-        profile = Profile_information.objects.get(user=user)
-    except Profile_information.DoesNotExist:
-        profile = Profile_information(user=user)
+        profile = ProfileInformation.objects.get(user=user)
+    except ProfileInformation.DoesNotExist:
+        profile = ProfileInformation(user=user)
     
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            city = request.POST.get('city', '')
-            country = request.POST.get('country', '') 
-            phone_number = request.POST.get('phone_number', '')
-            Birthday = request.POST.get('Birthday', '')
-            Profession = request.POST.get('Profession', '')
-            Bio = request.POST.get('Bio', '')
-            gender = request.POST.get('gender', '')
-            Address = request.POST.get('Address', '')
-            Rela_status = request.POST.get('Rela_status', '')
-            location = request.POST.get('location', '')
+        city = request.POST.get('city', '')
+        country = request.POST.get('country', '') 
+        phone_number = request.POST.get('phone_number', '')
+        birthday = request.POST.get('birthday', '')
+        profession = request.POST.get('profession', '')
+        bio = request.POST.get('bio', '')
+        gender = request.POST.get('gender', '')
+        address = request.POST.get('address', '')
+        rela_status = request.POST.get('rela_status', '')
+        location = request.POST.get('location', '')
+        profile.location = location
 
-            profile.city = city
-            profile.country = country
-            profile.phone_number = phone_number
-            profile.Birthday = Birthday
-            profile.Profession = Profession
-            profile.Bio = Bio
-            if request.FILES.get('cover', None):
-                profile.cover = request.FILES['cover']
-            if request.FILES.get('profile_photo', None):
-                profile.profile_photo = request.FILES['profile_photo']
-            profile.gender = gender
-            profile.Address = Address
-            profile.Rela_status = Rela_status
-            profile.location = location
-            profile.save()
- 
-    return render(request, 'profile.html', {'user': user, 'profile': profile})
-  
+        profile.city = city
+        profile.country = country
+        profile.phone_number = phone_number
+        profile.birthday = birthday
+        profile.profession = profession
+        profile.bio = bio
+        if request.FILES.get('cover', None):
+            profile.cover = request.FILES['cover']
+        if request.FILES.get('profile_photo', None):
+            profile.profile_photo = request.FILES['profile_photo']
+        profile.gender = gender
+        profile.address = address
+        profile.rela_status = rela_status
+        profile.location = location
+        profile.save()
 
-
+    # Changement de mot de passe
+    if request.method == 'POST' and 'change_password' in request.POST:
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile_information', username=username)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        
+    # Envoi d'un e-mail de confirmation de changement de mot de passe
+    if request.method == 'POST' and 'send_confirmation_email' in request.POST:
+        email = request.user.email
+        send_mail('Password Change Confirmation', 'Please confirm your password change.', 'from@example.com', [email], fail_silently=False)
+        messages.success(request, 'A confirmation email has been sent to your email address.')
+        return redirect('profile_information', username=username)
+        
+    return render(request, 'profile.html', {'user': user, 'profile': profile, 'password_form': form})
 
 
 
