@@ -92,6 +92,7 @@
                 {% else %}
                 <a class="nav-item nav-link" href="{% url 'profile' user.username %}" class="nav-item nav-link">Profile</a>
                 {% endif %}
+                <a class="nav-item nav-link" href="{% url 'profile' user.username %}" class="nav-item nav-link">Profile</a>
                 <a href="{% url 'signout' %}" class="nav-item nav-link">Deconnection</a>
                 <a href="{% url 'Home' %}" class="nav-item nav-link">Home</a>
                 <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
