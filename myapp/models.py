@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.conf import settings
+from sendgrid.helpers.mail import Mail
+from django.core.mail import send_mail
 
 # Create your models here.
 
