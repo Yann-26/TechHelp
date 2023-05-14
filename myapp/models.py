@@ -146,11 +146,7 @@ class TeamMembers(models.Model):
         return self.fullname
 
 
-from django.db import models
-from django.conf import settings
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-from django.core.mail import send_mail
+
 
 
 # ################### newsletter

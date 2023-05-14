@@ -25,7 +25,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER ='etudiant.2604@gmail.com'
 EMAIL_HOST_PASSWORD = 'yhbejtayaeaowdld'
 FROM_EMAIL = 'yannassiri26@gmail.com' 
-SENDGRID_API_KEY = os.environ.get('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')
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -60,11 +60,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'django_countries',
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    
    
     
     # 'captcha',
